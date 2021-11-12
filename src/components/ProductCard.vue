@@ -1,11 +1,9 @@
-<!--<template>-->
+<template>
+  <h1>Product card</h1>
+</template>
 
-<!--</template>-->
+<script>
+</script>
 
-<!--<script>-->
-
-<!--</script>-->
-
-<!--<style>-->
-
-<!--</style>-->
+<style>
+</style>

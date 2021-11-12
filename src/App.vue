@@ -1,10 +1,12 @@
 <template>
   <div class="container">
-    <div class="content">
-      <app-new-product></app-new-product>
-      <div class="products-block">
-        <h1>Product card</h1>
-        <app-product-card></app-product-card>
+    <div class="container-block">
+      <app-navbar></app-navbar>
+      <div class="content">
+        <app-new-product></app-new-product>
+        <div class="products-block">
+          <app-product-card></app-product-card>
+        </div>
       </div>
     </div>
   </div>
@@ -13,9 +15,11 @@
 <script>
 import NewProduct from '@/components/NewProduct'
 import ProductCard from '@/components/ProductCard'
+import Navbar from '@/components/Navbar'
 
 export default {
   components: {
+    appNavbar: Navbar,
     appNewProduct: NewProduct,
     appProductCard: ProductCard
   }
@@ -32,10 +36,14 @@ export default {
   align-items: center;
 }
 
-.content {
+.container-block {
   width: 1440px;
+}
+
+.content {
+  width: 100%;
   box-sizing: border-box;
-  padding: 32px;
+  padding: 16px 24px 0;;
   display: flex;
   justify-content: space-between;
 }

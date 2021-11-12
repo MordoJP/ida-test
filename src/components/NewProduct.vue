@@ -85,7 +85,7 @@
     border: none;
     box-sizing: border-box;
     background: $background-forms-color;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px $box-shadow-color;
     border-radius: 4px;
     padding: 10px 16px 11px;
     font-size: 12px;
