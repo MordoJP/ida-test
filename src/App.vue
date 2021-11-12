@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="content">
-      <app-new-product class="add-product"></app-new-product>
+      <app-new-product></app-new-product>
       <div class="products-block">
         <h1>Product card</h1>
         <app-product-card></app-product-card>
@@ -23,6 +23,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./style/variables";
+
 .container {
   width: 100%;
   display: flex;
@@ -36,12 +38,6 @@ export default {
   padding: 32px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-}
-
-.add-product {
-  width: 332px;
-  background: red;
 }
 
 .products-block {
