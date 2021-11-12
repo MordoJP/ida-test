@@ -1,32 +1,51 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div class="container">
+    <div class="content">
+      <app-new-product class="add-product"></app-new-product>
+      <div class="products-block">
+        <h1>Product card</h1>
+        <app-product-card></app-product-card>
+      </div>
     </div>
-    <router-view/>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import NewProduct from '@/components/NewProduct'
+import ProductCard from '@/components/ProductCard'
+
+export default {
+  components: {
+    appNewProduct: NewProduct,
+    appProductCard: ProductCard
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#nav {
-  padding: 30px;
+.content {
+  width: 1440px;
+  box-sizing: border-box;
+  padding: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+.add-product {
+  width: 332px;
+  background: red;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.products-block {
+  width: 1028px;
+  background: green;
 }
 </style>
