@@ -30,7 +30,7 @@
         </div>
       </form>
       <form>
-        <div class="form-group">
+        <div class="form-group last-fg">
           <label for="product-price" class="required-label">Цена товара</label>
           <input
             type="text"
@@ -40,7 +40,7 @@
           >
         </div>
       </form>
-      <button class="add-product-button-disabled">Добавить товар</button>
+      <button class="add-product-button disabled-button">Добавить товар</button>
     </div>
   </div>
 </template>
@@ -52,6 +52,7 @@
 <style lang="scss" scoped>
 @import "../style/variables";
 
+/* basic card styles */
 .new-product-container {
   display: flex;
   flex-direction: column;
@@ -68,14 +69,12 @@
   border-radius: 4px;
 }
 
+/* forms stylisation */
 .form-group {
   margin-bottom: 16px;
   label, span {
     display: block;
     margin-bottom: 4px;
-    font-family: $main-font;
-    font-style: normal;
-    font-weight: normal;
     font-size: 10px;
     line-height: 13px;
     letter-spacing: -0.02em;
@@ -89,12 +88,15 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     padding: 10px 16px 11px;
-    font-style: normal;
-    font-weight: normal;
     font-size: 12px;
     line-height: 15px;
     color: $main-text-color;
+  }
+  /* text stylisation */
+  label, span, input, textarea {
     font-family: $main-font;
+    font-style: normal;
+    font-weight: normal;
   }
   input[type=text]::placeholder, textarea::placeholder {
     font-family: $main-font;
@@ -105,6 +107,12 @@
   }
 }
 
+/* indent for the last input field */
+.last-fg {
+  margin-bottom: 24px;
+}
+
+/* height for inputs */
 .form-control-sm {
   height: 36px;
 }
@@ -114,6 +122,7 @@
   resize: none;
 }
 
+/* required marker for inputs */
 .required-label::after {
   height: 4px;
   width: 4px;
@@ -123,14 +132,12 @@
   position: absolute;
 }
 
-.add-product-button-disabled {
+/* buttons stylisation */
+.add-product-button {
   width: 284px;
   height: 36px;
-  background: $disabled-button-color;
   border: none;
-  margin-top: 8px;
   border-radius: 10px;
-  color: $inner-text-color;
   font-family: $button-font;
   font-style: normal;
   font-weight: 600;
@@ -138,5 +145,10 @@
   line-height: 15px;
   text-align: center;
   letter-spacing: -0.02em;
+}
+
+.disabled-button {
+  background: $disabled-button-color;
+  color: $inner-text-color;
 }
 </style>
