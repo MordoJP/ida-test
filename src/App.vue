@@ -6,6 +6,11 @@
         <app-new-product></app-new-product>
         <div class="products-block">
           <app-product-card></app-product-card>
+          <app-product-card></app-product-card>
+          <app-product-card></app-product-card>
+          <app-product-card></app-product-card>
+          <app-product-card></app-product-card>
+          <app-product-card></app-product-card>
         </div>
       </div>
     </div>
@@ -50,6 +55,8 @@ export default {
 
 .products-block {
   width: 1028px;
-  background: green;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 </style>

@@ -32,7 +32,7 @@ export default {
   methods: {
     changeFilter (evt) {
       this.show = false
-      this.filterNow = evt.target.innerText
+      this.filterNow = evt.target.innerText // уточнить можно ли так?
     }
   }
 }
