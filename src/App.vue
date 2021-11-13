@@ -11,6 +11,12 @@
           <app-product-card></app-product-card>
           <app-product-card></app-product-card>
           <app-product-card></app-product-card>
+          <app-product-card></app-product-card>
+          <app-product-card></app-product-card>
+          <app-product-card></app-product-card>
+          <app-product-card></app-product-card>
+          <app-product-card></app-product-card>
+          <app-product-card></app-product-card>
         </div>
       </div>
     </div>

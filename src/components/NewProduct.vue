@@ -9,6 +9,7 @@
             id="product-name"
             class="form-control-sm"
             placeholder="Введите наименование товара"
+            required
           >
         </div>
       </form>
@@ -26,6 +27,7 @@
             id="product-img"
             class="form-control-sm"
             placeholder="Введите ссылку"
+            required
           >
         </div>
       </form>
@@ -37,6 +39,7 @@
             id="product-price"
             class="form-control-sm"
             placeholder="Введите цену"
+            required
           >
         </div>
       </form>
@@ -46,7 +49,52 @@
 </template>
 
 <script>
-
+export default {
+  data () {
+    return {
+      title: '',
+      description: '',
+      imageSrc: '',
+      price: null
+    }
+  }
+  // computed: {
+  //   loading () {
+  //     return this.$store.getters.loading
+  //   }
+  // },
+  // methods: {
+  //   createAd () {
+  //     if (this.$refs.form.validate() && this.image) {
+  //       const ad = {
+  //         title: this.title,
+  //         description: this.description,
+  //         promo: this.promo,
+  //         image: this.image
+  //       }
+  //
+  //       this.$store.dispatch('createAd', ad)
+  //         .then(() => {
+  //           this.$router.push('/list')
+  //         })
+  //         .catch(() => {})
+  //     }
+  //   },
+  //   triggerUpload () {
+  //     this.$refs.fileInput.click()
+  //   },
+  //   onFileChange (evt) {
+  //     const file = evt.target.files[0]
+  //
+  //     const reader = new FileReader()
+  //     reader.onload = e => {
+  //       this.imageSrc = reader.result
+  //     }
+  //     reader.readAsDataURL(file)
+  //     this.image = file
+  //   }
+  // }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -57,11 +105,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 440px;
+  position: sticky;
+  top: 24px;
 }
 
 .new-product-form {
   width: 332px;
-  height: 440px;
   box-sizing: border-box;
   padding: 24px;
   background: $background-forms-color;

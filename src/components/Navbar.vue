@@ -3,18 +3,24 @@
     <span class="add-product">Добавление товара</span>
     <transition name="filter" mode="out-in">
       <div class="filter-container">
-        <div class="filter-block" @click="show = !show">
+        <div class="filter-block" @click="show = !show" v-if="!show">
           <span class="filter-text">{{ filterNow }}</span>
+          <div class="filter-arrow">
+            <div></div>
+          </div>
         </div>
-        <div class="dropdown-list-container" v-if="show">
-          <ul class="dropdown-list">
-            <li
-              @click="changeFilter"
-              v-for="list of filters"
-              :key="list.id"
-            >{{ list }}</li>
-          </ul>
-        </div>
+        <ul class="dropdown-list" v-else>
+          <li
+            @click="changeFilter"
+            v-for="list of filters"
+            :key="list.id"
+          >
+            <span>{{ list }}</span>
+            <div class="list-arrow">
+              <div></div>
+            </div>
+          </li>
+        </ul>
       </div>
     </transition>
   </div>
@@ -25,7 +31,7 @@ export default {
   data () {
     return {
       show: false,
-      filters: ['По умолчанию', 'Всякое', 'Разное', 'Интересное'],
+      filters: ['По умолчанию', 'По цене min', 'По цене max', 'По наименованию'],
       filterNow: 'По умолчанию'
     }
   },
@@ -64,12 +70,13 @@ color: $main-text-color;
 
 /* filter button styles */
 .filter-block {
-  width: 121.49px;
+  min-width: 121.49px;
   height: 36px;
   background: $background-forms-color;
   box-shadow: 0 2px 5px $box-shadow-color;
   border-radius: 4px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   cursor: pointer;
   /* filter button text styles */
@@ -82,19 +89,11 @@ color: $main-text-color;
     color: $inner-text-color;
     display: inline-block;
     margin-left: 16px;
+    margin-right: 5px;
     position: relative;
   }
-  span:after {
-    width: 4.59px;
-    height: 4.59px;
-    content: "";
-    border-right: 1px solid $inner-text-color;
-    border-bottom: 1px solid $inner-text-color;
-    box-sizing: border-box;
+  .filter-arrow div{
     transform: rotate(45deg);
-    position: absolute;
-    top: 5px;
-    left: 83px;
   }
 }
 .filter-block:hover {
@@ -102,10 +101,23 @@ color: $main-text-color;
   span {
     color: $main-text-color
   }
-  span:after {
+  .filter-arrow div{
     border-right: 1px solid $main-text-color;
     border-bottom: 1px solid $main-text-color;
   }
+}
+
+/* Arrows */
+.filter-arrow div, .list-arrow div {
+  width: 4.59px;
+  height: 4.59px;
+  border-right: 1px solid $inner-text-color;
+  border-bottom: 1px solid $inner-text-color;
+  box-sizing: border-box;
+}
+
+.filter-arrow, .list-arrow {
+  margin-right: 15.51px;
 }
 
 /* dropdown list styles */
@@ -114,25 +126,37 @@ color: $main-text-color;
   display: flex;
   flex-direction: column;
   z-index: 10;
-  width: 121.49px;
+  min-width: 121.49px;
   box-shadow: 0 2px 5px $box-shadow-color;
   border-radius: 4px;
   padding: 0;
   position: absolute;
   top: -16px;
+  left: -122px;
   li {
     height: 36px;
-    font-family: $main-font;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 15px;
-    background: $background-forms-color;
-    color: $inner-text-color;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding-left: 16px;
     cursor: pointer;
+    background: $background-forms-color;
+    span {
+      font-family: $main-font;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 15px;
+      padding-right: 5px;
+      color: $inner-text-color;
+    }
+    .list-arrow {
+      position: relative;
+      top: 3px;
+    }
+    .list-arrow div{
+      transform: rotate(-135deg);
+    }
   }
   li:first-child {
     border-radius: 4px 4px 0 0;
@@ -143,23 +167,13 @@ color: $main-text-color;
   }
   li:hover {
     background: $inner-text-color;
-    color: $main-text-color
-  }
-  li:first-child:after {
-    width: 4.59px;
-    height: 4.59px;
-    content: "";
-    border-right: 1px solid $inner-text-color;
-    border-bottom: 1px solid $inner-text-color;
-    box-sizing: border-box;
-    transform: rotate(-135deg);
-    position: absolute;
-    top: 19px;
-    left: 99px;
-  }
-  li:first-child:hover::after {
-    border-right: 1px solid $main-text-color;
-    border-bottom: 1px solid $main-text-color;
+    span {
+      color: $main-text-color
+    }
+    .list-arrow div{
+      border-right: 1px solid $main-text-color;
+      border-bottom: 1px solid $main-text-color;
+    }
   }
 }
 
