@@ -99,41 +99,10 @@ export default {
     consoling (val) {
       console.log(val)
     }
-  },
-  computed: {
-    loading () {
-      return this.$store.getters.loading
-    }
   }
-  // methods: {
-  //   createAd () {
-  //     if (this.$refs.form.validate() && this.image) {
-  //       const ad = {
-  //         title: this.title,
-  //         description: this.description,
-  //         promo: this.promo,
-  //         image: this.image
-  //       }
-  //
-  //       this.$store.dispatch('createAd', ad)
-  //         .then(() => {
-  //           this.$router.push('/list')
-  //         })
-  //         .catch(() => {})
-  //     }
-  //   },
-  //   triggerUpload () {
-  //     this.$refs.fileInput.click()
-  //   },
-  //   onFileChange (evt) {
-  //     const file = evt.target.files[0]
-  //
-  //     const reader = new FileReader()
-  //     reader.onload = e => {
-  //       this.imageSrc = reader.result
-  //     }
-  //     reader.readAsDataURL(file)
-  //     this.image = file
+  // computed: {
+  //   loading () {
+  //     return this.$store.getters.loading
   //   }
   // }
 }
