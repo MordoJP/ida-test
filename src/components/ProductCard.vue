@@ -2,17 +2,21 @@
   <div class="product-container" @mouseenter="show = true" @mouseleave="show = false">
     <div class="product-card-container">
       <div class="product-image">
-        <img :src="product.imageSrc" :alt="product.title">
+        <img :src="newProduct.imageSrc" :alt="newProduct.title">
       </div>
       <div class="product-info">
         <div class="product-info-title-description">
-          <span class="product-title">{{ product.title }}</span>
-          <span class="product-description">{{ product.description }}</span>
+          <span class="product-title">{{ newProduct.title }}</span>
+          <span class="product-description">{{ newProduct.description }}</span>
         </div>
-        <span class="product-price">{{ product.price }}</span>
+        <span class="product-price">{{ priceFilter }}</span>
       </div>
     </div>
-    <div class="product-delete" v-if="show">
+    <div
+      class="product-delete"
+      v-if="show"
+      @click="deleteProduct()"
+    >
       <img src="../../src/style/icons/delete.svg" alt="delete product">
     </div>
   </div>
@@ -22,14 +26,19 @@
 export default {
   data () {
     return {
-      show: false,
-      product: {
-        id: '',
-        imageSrc: 'https://samolet.ru/media/CACHE/images/project/card_image/001/a445e8a91c5fa5dcdfb798e658a04352.jpg',
-        title: 'Наименование товара',
-        description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-        price: '10 000 руб.'
-      }
+      show: false
+    }
+  },
+  props: ['newProduct'],
+  computed: {
+    priceFilter () {
+      const num = '' + this.newProduct.price
+      return num.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ') + ' руб.'
+    }
+  },
+  methods: {
+    deleteProduct () {
+      this.$store.dispatch('deleteProduct', this.newProduct)
     }
   }
 }
@@ -102,6 +111,7 @@ export default {
 .product-container {
   position: relative;
   cursor: pointer;
+  margin-right: 16px;
 }
 
 /* delete button */
@@ -118,10 +128,20 @@ export default {
   position: absolute;
   top: -8px;
   left: 308px;
+  transition: .2s ease-out;
+  user-select: none;
   img {
     height: 16px;
     width: 13px;
     color: $active-button-text-color;
   }
+}
+
+.product-delete:hover {
+  filter: brightness(120%);
+}
+
+.product-delete:active {
+  filter: contrast(80%) brightness(80%);
 }
 </style>

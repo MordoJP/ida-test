@@ -79,6 +79,7 @@ color: $main-text-color;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  user-select: none;
   /* filter button text styles */
   span {
     font-family: $main-font;
@@ -133,6 +134,7 @@ color: $main-text-color;
   position: absolute;
   top: -16px;
   left: -122px;
+  user-select: none;
   li {
     height: 36px;
     display: flex;
@@ -147,7 +149,6 @@ color: $main-text-color;
       font-weight: normal;
       font-size: 12px;
       line-height: 15px;
-      padding-right: 5px;
       color: $inner-text-color;
     }
     .list-arrow {

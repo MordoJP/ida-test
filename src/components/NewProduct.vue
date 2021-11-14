@@ -161,7 +161,7 @@ export default {
     font-style: normal;
     font-weight: normal;
   }
-  input[type=text]::placeholder, textarea::placeholder {
+  input::placeholder, textarea::placeholder {
     font-family: $main-font;
     color: $inner-text-color;
   }
@@ -222,11 +222,11 @@ export default {
 }
 
 .add-product-button:active {
-  background-color: #4c7a43 !important;
+  filter: contrast(80%) brightness(80%)!important;
 }
 
 .add-product-button:hover {
-  background-color: #91c288;
+  filter: brightness(115%);
 }
 
 .add-product-button:disabled {

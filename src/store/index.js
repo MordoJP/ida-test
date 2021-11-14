@@ -19,27 +19,30 @@ export default new Vuex.Store({
   },
   mutations: {
     createProduct (state, payload) {
+      const idx = Math.floor(Date.now() / 1000) + 'idx'
       const newProduct = new Product(
         payload.title,
         payload.description,
         payload.imageSrc,
-        payload.price
+        payload.price,
+        idx
       )
       state.products.push(newProduct)
-      console.log(payload)
-      console.log(state.products)
+    },
+    deleteProduct (state, payload) {
+      const idx = state.products.findIndex(p => p.id === payload.id)
+      state.products.splice(idx, 1)
     }
   },
   actions: {
     createProduct ({ commit }, payload) {
       commit('createProduct', payload)
+    },
+    deleteProduct ({ commit }, payload) {
+      commit('deleteProduct', payload)
     }
   },
   getters: {
-    ads (state) {
-      return state.ads
-    }
-  },
-  modules: {
+    products: s => s.products
   }
 })

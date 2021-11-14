@@ -5,18 +5,7 @@
       <div class="content">
         <app-new-product></app-new-product>
         <div class="products-block">
-          <app-product-card></app-product-card>
-          <app-product-card></app-product-card>
-          <app-product-card></app-product-card>
-          <app-product-card></app-product-card>
-          <app-product-card></app-product-card>
-          <app-product-card></app-product-card>
-          <app-product-card></app-product-card>
-          <app-product-card></app-product-card>
-          <app-product-card></app-product-card>
-          <app-product-card></app-product-card>
-          <app-product-card></app-product-card>
-          <app-product-card></app-product-card>
+          <app-product-card v-for="product of displayProducts" :key="product.id" :newProduct="product"></app-product-card>
         </div>
       </div>
     </div>
@@ -33,6 +22,11 @@ export default {
     appNavbar: Navbar,
     appNewProduct: NewProduct,
     appProductCard: ProductCard
+  },
+  computed: {
+    displayProducts () {
+      return this.$store.getters.products
+    }
   }
 }
 </script>
@@ -54,15 +48,14 @@ export default {
 .content {
   width: 100%;
   box-sizing: border-box;
-  padding: 16px 24px 0;;
+  padding: 16px 8px 0;
   display: flex;
   justify-content: space-between;
 }
 
 .products-block {
-  width: 1028px;
+  width: 1044px;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
 }
 </style>
