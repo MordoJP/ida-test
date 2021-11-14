@@ -1,54 +1,66 @@
 <template>
   <div class="new-product-container">
     <div class="new-product-form">
-      <form>
-        <div class="form-group">
-          <label for="product-name" class="required-label">Наименование товара</label>
-          <input
-            type="text"
-            id="product-name"
-            class="form-control-sm"
-            placeholder="Введите наименование товара"
-            required
-          >
-        </div>
-      </form>
-      <form>
-        <div class="form-group">
-          <span>Описание товара</span>
-          <textarea class="form-control-big" placeholder="Введите описание товара"></textarea>
-        </div>
-      </form>
-      <form>
-        <div class="form-group">
-          <label for="product-img" class="required-label">Ссылка на изображение товара</label>
-          <input
-            type="text"
-            id="product-img"
-            class="form-control-sm"
-            placeholder="Введите ссылку"
-            required
-          >
-        </div>
-      </form>
-      <form>
-        <div class="form-group last-fg">
-          <label for="product-price" class="required-label">Цена товара</label>
-          <input
-            type="text"
-            id="product-price"
-            class="form-control-sm"
-            placeholder="Введите цену"
-            required
-          >
-        </div>
-      </form>
-      <button class="add-product-button disabled-button">Добавить товар</button>
+      <div class="form-group">
+        <label for="product-name" class="required-label">Наименование товара</label>
+        <input
+          type="text"
+          id="product-name"
+          class="form-control-sm"
+          :class="($v.title.$error) ? 'invalid-input' : 'valid-input'"
+          placeholder="Введите наименование товара"
+          @input="$v.title.$touch()"
+          v-model="title"
+        >
+        <div class="error" v-if="$v.title.$dirty && !$v.title.required">Поле является обязательным</div>
+      </div>
+      <div class="form-group">
+        <span>Описание товара</span>
+        <textarea
+          class="form-control-big valid-input"
+          placeholder="Введите описание товара"
+          v-model="description"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="product-img" class="required-label">Ссылка на изображение товара</label>
+        <input
+          type="text"
+          id="product-img"
+          class="form-control-sm"
+          placeholder="Введите ссылку"
+          v-model="imageSrc"
+          @input="$v.imageSrc.$touch()"
+          :class="($v.imageSrc.$error) ? 'invalid-input' : 'valid-input'"
+        >
+        <div class="error" v-if="$v.imageSrc.$dirty && !$v.imageSrc.required">Поле является обязательным</div>
+      </div>
+      <div class="form-group last-fg">
+        <label for="product-price" class="required-label">Цена товара</label>
+        <input
+          type="number"
+          id="product-price"
+          class="form-control-sm"
+          placeholder="Введите цену"
+          v-model.number="price"
+          @input="$v.price.$touch()"
+          :class="($v.price.$error) ? 'invalid-input' : 'valid-input'"
+        >
+        <div class="error" v-if="$v.price.$dirty && !$v.price.required">Поле является обязательным</div>
+      </div>
+      <button
+        type="submit"
+        class="add-product-button"
+        @click="createProduct"
+        :disabled="!$v.price.required || !$v.imageSrc.required || !$v.title.required"
+      >Добавить товар</button>
     </div>
   </div>
 </template>
 
 <script>
+import { required } from 'vuelidate/lib/validators'
+
 export default {
   data () {
     return {
@@ -57,12 +69,42 @@ export default {
       imageSrc: '',
       price: null
     }
+  },
+  validations: {
+    title: { required },
+    imageSrc: { required },
+    price: { required }
+  },
+  methods: {
+    createProduct () {
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        console.log('Form is not required')
+      } else {
+        const product = {
+          title: this.title,
+          description: this.description,
+          imageSrc: this.imageSrc,
+          price: this.price
+        }
+
+        this.$store.dispatch('createProduct', product)
+
+        this.title = ''
+        this.description = ''
+        this.imageSrc = ''
+        this.price = null
+      }
+    },
+    consoling (val) {
+      console.log(val)
+    }
+  },
+  computed: {
+    loading () {
+      return this.$store.getters.loading
+    }
   }
-  // computed: {
-  //   loading () {
-  //     return this.$store.getters.loading
-  //   }
-  // },
   // methods: {
   //   createAd () {
   //     if (this.$refs.form.validate() && this.image) {
@@ -121,7 +163,6 @@ export default {
 
 /* forms stylisation */
 .form-group {
-  margin-bottom: 16px;
   label, span {
     display: block;
     margin-bottom: 4px;
@@ -132,7 +173,6 @@ export default {
   }
   input, textarea {
     width: 284px;
-    border: none;
     box-sizing: border-box;
     background: $background-forms-color;
     box-shadow: 0 2px 5px $box-shadow-color;
@@ -141,6 +181,10 @@ export default {
     font-size: 12px;
     line-height: 15px;
     color: $main-text-color;
+  }
+  .valid-input {
+    border: none;
+    margin-bottom: 16px;
   }
   /* text stylisation */
   label, span, input, textarea {
@@ -152,7 +196,7 @@ export default {
     font-family: $main-font;
     color: $inner-text-color;
   }
-  input:focus, textarea:focus {
+  .valid-input:focus, textarea:focus {
     outline: 1px solid $main-text-color;
   }
 }
@@ -160,6 +204,13 @@ export default {
 /* indent for the last input field */
 .last-fg {
   margin-bottom: 24px;
+}
+
+/* price input hide arrows */
+.form-control-sm::-webkit-outer-spin-button,
+.form-control-sm::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* height for inputs */
@@ -195,10 +246,44 @@ export default {
   line-height: 15px;
   text-align: center;
   letter-spacing: -0.02em;
+  background: $enabled-button-color;
+  color: $active-button-text-color;
+  cursor: pointer;
+  transition: .2s ease-out;
 }
 
-.disabled-button {
+.add-product-button:active {
+  background-color: #4c7a43 !important;
+}
+
+.add-product-button:hover {
+  background-color: #91c288;
+}
+
+.add-product-button:disabled {
   background: $disabled-button-color;
   color: $inner-text-color;
+}
+
+/* Validation styles */
+.invalid-input {
+  border: 1px solid #FF8484;
+  position: relative;
+  margin-bottom: 4px;
+}
+
+.invalid-input:focus {
+  outline: none;
+}
+
+.error {
+  font-family: $main-text-color;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 8px;
+  line-height: 10px;
+  letter-spacing: -0.02em;
+  color: $error-color;
+  margin-bottom: 2px;
 }
 </style>
