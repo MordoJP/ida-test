@@ -38,7 +38,7 @@ export default {
   methods: {
     changeFilter (evt) {
       this.show = false
-      this.filterNow = evt.target.innerText // уточнить можно ли так?
+      this.filterNow = evt.target.innerText
     }
   }
 }

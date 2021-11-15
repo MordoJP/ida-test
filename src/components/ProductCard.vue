@@ -8,7 +8,6 @@
         <div class="product-info-title-description">
           <span class="product-title">{{ newProduct.title }}</span>
           <span class="product-description"><p>{{ newProduct.description }}</p></span>
-<!--          добавить ограничение по символам-->
         </div>
         <span class="product-price">{{ priceFilter }}</span>
       </div>
