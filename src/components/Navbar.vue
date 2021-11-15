@@ -57,6 +57,8 @@ export default {
 
 .filter-container {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 /* Adding text styles */
@@ -178,4 +180,58 @@ color: $main-text-color;
   }
 }
 
+/* Adaptive styles */
+@media screen and (max-width: 767px) {
+  .container-navbar {
+    padding: 10px 20px 0;
+  }
+
+  .add-product {
+    font-size: 20px;
+  }
+
+  .filter-block {
+    min-width: 120px;
+    height: 20px;
+    span {
+      font-size: 10px;
+      margin-left: 10px;
+      margin-right: 3px;
+    }
+  }
+
+  .dropdown-list {
+    min-width: 120px;
+    left: -120px;
+    top: -13px;
+    li {
+      height: 20px;
+      padding-left: 10px;
+      span {
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 419px) {
+  .container-navbar {
+    padding: 8px 10px;
+    justify-content: flex-end;
+    height: 20px;
+  }
+
+  .filter-container {
+    height: 20px;
+  }
+
+  .add-product {
+    display: none;
+    font-size: 0;
+  }
+
+  .dropdown-list {
+    top: -16px;
+  }
+}
 </style>

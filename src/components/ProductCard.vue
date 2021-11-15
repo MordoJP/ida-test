@@ -7,7 +7,8 @@
       <div class="product-info">
         <div class="product-info-title-description">
           <span class="product-title">{{ newProduct.title }}</span>
-          <span class="product-description">{{ newProduct.description }}</span>
+          <span class="product-description"><p>{{ newProduct.description }}</p></span>
+<!--          добавить ограничение по символам-->
         </div>
         <span class="product-price">{{ priceFilter }}</span>
       </div>
@@ -57,6 +58,7 @@ export default {
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
+  transition: .3s ease-out;
   /* product image styles */
   .product-image img, .product-image {
     width: 332px;
@@ -65,7 +67,9 @@ export default {
   }
   .product-image {
     background-color: $background-forms-color;
+    overflow: hidden;
     img {
+      transition: .3s ease-out;
       object-fit: cover;
     }
   }
@@ -82,6 +86,13 @@ export default {
       display: flex;
       flex-direction: column;
       margin-bottom: 16px;
+      p {
+        margin: 0;
+        -webkit-line-clamp: 5;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
     }
     .product-title, .product-description, .product-price {
        font-family: $main-font;
@@ -104,6 +115,13 @@ export default {
       font-size: 24px;
       line-height: 30px;
     }
+  }
+}
+
+.product-card-container:hover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.17), 0 5px 10px rgba(0, 0, 0, 0.08);
+  img {
+    transform: scale(1.1);
   }
 }
 
@@ -143,5 +161,103 @@ export default {
 
 .product-delete:active {
   filter: contrast(80%) brightness(80%);
+}
+
+/* Adaptive styles */
+@media screen and (max-width: 1199px) {
+  .product-card-container {
+    width: 280px;
+    height: 350px;
+    .product-image img, .product-image {
+      width: 280px;
+      height: 170px;
+    }
+  }
+
+  .product-info {
+    max-height: 180px;
+    padding: 10px 16px 20px!important;
+    .product-info-title-description {
+      height: 115px!important;
+      margin-bottom: 10px!important;
+      p {
+        -webkit-line-clamp: 4!important;
+      }
+    }
+    .product-title {
+      margin-bottom: 10px!important;
+    }
+  }
+
+  .product-delete {
+    left: 259px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .product-container {
+    margin-right: 0;
+  }
+
+  .product-card-container {
+    width: 332px;
+    height: 423px;
+    .product-image img, .product-image {
+      width: 332px;
+      height: 200px;
+    }
+  }
+
+  .product-info {
+    max-height: 223px;
+    padding: 16px 16px 24px!important;
+    .product-info-title-description {
+      height: 137px!important;
+      margin-bottom: 16px!important;
+      p {
+        -webkit-line-clamp: 5!important;
+      }
+    }
+    .product-title {
+      margin-bottom: 16px!important;
+    }
+  }
+
+  .product-delete {
+    left: 308px;
+  }
+}
+
+@media screen and (max-width: 419px) {
+  .product-card-container {
+    width: 300px;
+    height: 350px;
+    .product-image img, .product-image {
+      width: 300px;
+      height: 170px;
+    }
+  }
+
+  .product-info {
+    height: 180px;
+    padding: 12px 12px 20px!important;
+    .product-info-title-description {
+      height: 100px!important;
+      margin-bottom: 12px!important;
+      p {
+        -webkit-line-clamp: 4!important;
+      }
+    }
+    .product-title {
+      margin-bottom: 8px!important;
+    }
+    .product-description {
+      margin-bottom: 8px;
+    }
+  }
+
+  .product-delete {
+    left: 278px;
+  }
 }
 </style>

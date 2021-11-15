@@ -15,7 +15,7 @@ class Product {
 
 export default new Vuex.Store({
   state: {
-    products: []
+    products: JSON.parse(localStorage.getItem('products') || '[]')
   },
   mutations: {
     createProduct (state, payload) {
@@ -28,10 +28,14 @@ export default new Vuex.Store({
         idx
       )
       state.products.push(newProduct)
+      localStorage.setItem('products', JSON.stringify(state.products))
     },
     deleteProduct (state, payload) {
-      const idx = state.products.findIndex(p => p.id === payload.id)
-      state.products.splice(idx, 1)
+      const arrowProducts = state.products
+      const idx = arrowProducts.findIndex(p => p.id === payload.id)
+      // state.products.splice(idx, 1)
+      arrowProducts.splice(idx, 1)
+      localStorage.setItem('products', JSON.stringify(arrowProducts))
     }
   },
   actions: {

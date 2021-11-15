@@ -58,4 +58,62 @@ export default {
   display: flex;
   flex-wrap: wrap;
 }
+
+/* Adaptive styles */
+@media screen and (max-width: 1439px) {
+  .container-block {
+    width: 1200px;
+  }
+
+  .products-block {
+    width: 804px;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .container-block {
+    width: 1024px;
+  }
+
+  .products-block {
+    width: 628px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .container-block {
+    width: 768px;
+  }
+
+  .products-block {
+    width: 372px;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .container-block {
+    width: 430px;
+  }
+
+  .products-block {
+    width: 420px;
+  }
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 419px) {
+  .container-block {
+    min-width: 320px;
+  }
+
+  .products-block {
+    min-width: 320px;
+  }
+}
 </style>
