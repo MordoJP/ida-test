@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     <div class="container-block">
-      <app-navbar></app-navbar>
+      <AppNavbar />
       <div class="content">
-        <app-new-product></app-new-product>
+        <AppNewProduct />
         <div class="products-block">
-          <app-product-card v-for="product of displayProducts" :key="product.id" :newProduct="product"></app-product-card>
+          <AppProductCard v-for="product of displayProducts" :key="product.id" :newProduct="product" />
         </div>
       </div>
     </div>
@@ -13,16 +13,13 @@
 </template>
 
 <script>
-import NewProduct from '@/components/NewProduct'
-import ProductCard from '@/components/ProductCard'
-import Navbar from '@/components/Navbar'
-
 export default {
   components: {
-    appNavbar: Navbar,
-    appNewProduct: NewProduct,
-    appProductCard: ProductCard
+    AppNavbar: () => import('@/components/Navbar'),
+    AppNewProduct: () => import('@/components/NewProduct'),
+    AppProductCard: () => import('@/components/ProductCard')
   },
+
   computed: {
     displayProducts () {
       return this.$store.getters.products

@@ -29,13 +29,16 @@ export default {
       show: false
     }
   },
+
   props: ['newProduct'],
+
   computed: {
     priceFilter () {
       const num = '' + this.newProduct.price
       return num.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ') + ' руб.'
     }
   },
+
   methods: {
     deleteProduct () {
       this.$store.dispatch('deleteProduct', this.newProduct)

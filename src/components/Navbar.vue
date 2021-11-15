@@ -1,45 +1,64 @@
 <template>
   <div class="container-navbar">
     <span class="add-product">Добавление товара</span>
-    <transition name="filter" mode="out-in">
-      <div class="filter-container">
-        <div class="filter-block" @click="show = !show" v-if="!show">
-          <span class="filter-text">{{ filterNow }}</span>
-          <div class="filter-arrow">
+    <div class="filter-container">
+      <div class="filter-block" @click="show = true" v-if="!show">
+        <span class="filter-text">{{ filterNow }}</span>
+        <div class="filter-arrow">
+          <div></div>
+        </div>
+      </div>
+      <ul class="dropdown-list" v-click-outside="hide" v-else>
+        <li
+          v-for="list of filters"
+          :key="list.id"
+          @click="sortProducts(list)"
+        >
+          <span>{{ list.title }}</span>
+          <div class="list-arrow">
             <div></div>
           </div>
-        </div>
-        <ul class="dropdown-list" v-else>
-          <li
-            @click="changeFilter"
-            v-for="list of filters"
-            :key="list.id"
-          >
-            <span>{{ list }}</span>
-            <div class="list-arrow">
-              <div></div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </transition>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
+import ClickOutside from 'vue-click-outside'
+
 export default {
   data () {
     return {
       show: false,
-      filters: ['По умолчанию', 'По цене min', 'По цене max', 'По наименованию'],
+      filters: [
+        { name: 'default', title: 'По умолчанию' },
+        { name: 'min', title: 'По цене min' },
+        { name: 'max', title: 'По цене max' },
+        { name: 'name', title: 'По наименованию' }
+      ],
       filterNow: 'По умолчанию'
     }
   },
+
   methods: {
-    changeFilter (evt) {
+    sortProducts (val) {
       this.show = false
-      this.filterNow = evt.target.innerText
+      this.filterNow = val.title
+
+      this.$store.dispatch('sortProducts', val)
+    },
+    hide () {
+      this.show = false
     }
+  },
+
+  directives: {
+    ClickOutside
+  },
+
+  mounted () {
+    this.popupItem = this.$el
   }
 }
 </script>

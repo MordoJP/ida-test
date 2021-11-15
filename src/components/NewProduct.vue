@@ -78,11 +78,13 @@ export default {
       success: false
     }
   },
+
   validations: {
     title: { required },
     imageSrc: { required },
     price: { required }
   },
+
   methods: {
     createProduct () {
       this.$v.$touch()
