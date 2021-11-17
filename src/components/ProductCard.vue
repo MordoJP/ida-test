@@ -6,7 +6,7 @@
       </div>
       <div class="product-info">
         <div class="product-info-title-description">
-          <span class="product-title">{{ newProduct.title }}</span>
+          <h3 class="product-title">{{ newProduct.title }}</h3>
           <span class="product-description"><p>{{ newProduct.description }}</p></span>
         </div>
         <span class="product-price">{{ priceFilter }}</span>
@@ -52,18 +52,16 @@ export default {
 
 /* Basic layout product card */
 .product-card-container {
-  width: 332px;
-  height: 423px;
+  width: 100%;
   background: $background-forms-color;
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.04), 0 6px 10px rgba(0, 0, 0, 0.02);
   border-radius: 4px;
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
   transition: .3s ease-out;
   /* product image styles */
   .product-image img, .product-image {
-    width: 332px;
+    width: 100%;
     height: 200px;
     border-radius: 4px 4px 0 0;
   }
@@ -77,20 +75,20 @@ export default {
   }
   /* product text styles */
   .product-info {
-    max-height: 223px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 16px 16px 24px;
     .product-info-title-description {
-      height: 137px;
+      height: 121px;
       display: flex;
       flex-direction: column;
-      margin-bottom: 16px;
+      margin-bottom: 32px;
+      justify-content: space-between;
       p {
         margin: 0;
-        -webkit-line-clamp: 5;
+        -webkit-line-clamp: 4;
         display: -webkit-box;
         -webkit-box-orient: vertical;
         overflow: hidden;
@@ -105,9 +103,10 @@ export default {
       font-weight: 600;
       font-size: 20px;
       line-height: 25px;
-      margin-bottom: 16px;
+      margin: 0;
     }
     .product-description {
+      display: block;
       font-weight: normal;
       font-size: 16px;
       line-height: 20px;
@@ -131,7 +130,6 @@ export default {
 .product-container {
   position: relative;
   cursor: pointer;
-  margin-right: 16px;
 }
 
 /* delete button */
@@ -168,26 +166,18 @@ export default {
 /* Adaptive styles */
 @media screen and (max-width: 1199px) {
   .product-card-container {
-    width: 280px;
-    height: 350px;
     .product-image img, .product-image {
-      width: 280px;
       height: 170px;
     }
-  }
-
-  .product-info {
-    max-height: 180px;
-    padding: 10px 16px 20px!important;
-    .product-info-title-description {
-      height: 115px!important;
-      margin-bottom: 10px!important;
-      p {
-        -webkit-line-clamp: 4!important;
+    .product-info {
+      padding: 12px 12px 20px;
+      .product-info-title-description {
+        height: 110px;
+        margin-bottom: 10px;
       }
-    }
-    .product-title {
-      margin-bottom: 10px!important;
+      .product-title {
+        margin-bottom: 10px;
+      }
     }
   }
 
@@ -197,31 +187,19 @@ export default {
 }
 
 @media screen and (max-width: 1023px) {
-  .product-container {
-    margin-right: 0;
-  }
-
   .product-card-container {
-    width: 332px;
-    height: 423px;
     .product-image img, .product-image {
-      width: 332px;
       height: 200px;
     }
-  }
-
-  .product-info {
-    max-height: 223px;
-    padding: 16px 16px 24px!important;
-    .product-info-title-description {
-      height: 137px!important;
-      margin-bottom: 16px!important;
-      p {
-        -webkit-line-clamp: 5!important;
+    .product-info {
+      padding: 16px 16px 24px;
+      .product-info-title-description {
+        height: 121px;
+        margin-bottom: 32px;
       }
-    }
-    .product-title {
-      margin-bottom: 16px!important;
+      .product-title {
+        margin-bottom: 16px;
+      }
     }
   }
 
@@ -232,29 +210,18 @@ export default {
 
 @media screen and (max-width: 419px) {
   .product-card-container {
-    width: 300px;
-    height: 350px;
     .product-image img, .product-image {
-      width: 300px;
       height: 170px;
     }
-  }
-
-  .product-info {
-    height: 180px;
-    padding: 12px 12px 20px!important;
-    .product-info-title-description {
-      height: 100px!important;
-      margin-bottom: 12px!important;
-      p {
-        -webkit-line-clamp: 4!important;
+    .product-info {
+      padding: 12px 12px 20px;
+      .product-info-title-description {
+        height: 110px;
+        margin-bottom: 10px;
       }
-    }
-    .product-title {
-      margin-bottom: 8px!important;
-    }
-    .product-description {
-      margin-bottom: 8px;
+      .product-title {
+        margin-bottom: 10px;
+      }
     }
   }
 

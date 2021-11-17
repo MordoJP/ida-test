@@ -119,17 +119,10 @@ export default {
 @import "../style/variables";
 
 /* basic card styles */
-.new-product-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 440px;
+.new-product-form {
   position: sticky;
   top: 24px;
-}
-
-.new-product-form {
-  width: 332px;
+  width: 100%;
   box-sizing: border-box;
   padding: 24px;
   background: $background-forms-color;
@@ -153,7 +146,7 @@ export default {
   }
   input, textarea {
     display: block;
-    width: 284px;
+    width: 100%;
     box-sizing: border-box;
     background: $background-forms-color;
     box-shadow: 0 2px 5px $box-shadow-color;
@@ -216,7 +209,7 @@ export default {
 
 /* buttons stylisation */
 .add-product-button {
-  width: 284px;
+  width: 100%;
   height: 36px;
   border: none;
   border-radius: 10px;
@@ -258,9 +251,9 @@ export default {
   font-size: 12px;
   line-height: 15px;
   text-align: center;
-  position: absolute;
-  top: 419px;
-  left: 80px;
+  position: relative;
+  top: 3px;
+  height: 0;
   transition: .2s ease-out;
 }
 
@@ -287,54 +280,7 @@ export default {
 }
 
 /* Adaptive styles */
-@media screen and (max-width: 1199px) {
-  .new-product-container {
-    height: 350px;
-  }
-
-  .new-product-form {
-    width: 280px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .form-group {
-    input, textarea {
-      width: 230px;
-      border-radius: 3px;
-      padding: 8px 12px 9px;
-      font-size: 10px;
-      line-height: 12px;
-    }
-    input {
-      height: 30px;
-    }
-    textarea {
-      height: 60px;
-    }
-  }
-
-  .add-product-button {
-    width: 230px;
-    height: 30px;
-    border-radius: 5px;
-  }
-
-  .success {
-    font-size: 10px;
-    top: 360px;
-    left: 68px;
-  }
-}
-
 @media screen and (max-width: 767px) {
-  .new-product-container {
-    height: 210px;
-    position: static;
-    top: 24px;
-  }
-
   .new-product-inputs {
     display: flex;
     flex-direction: column;
@@ -343,9 +289,7 @@ export default {
   }
 
   .new-product-form {
-    width: 420px;
-    height: 190px;
-    box-sizing: border-box;
+    position: static;
     padding: 12px;
     display: flex;
     flex-direction: column;
@@ -393,8 +337,7 @@ export default {
 
   .success {
     font-size: 8px;
-    top: 173px;
-    left: 152px;
+    top: -5px;
   }
 
   .invalid-input {
@@ -408,17 +351,8 @@ export default {
 }
 
 @media screen and (max-width: 419px) {
-  .new-product-container {
-    height: 180px;
-  }
-
   .new-product-form {
-    width: 320px;
-    height: 170px;
     padding: 5px;
-    .new-product-top, .new-product-bottom  {
-      width: 310px;
-    }
   }
 
   .form-group {
@@ -428,8 +362,7 @@ export default {
   }
 
   .success {
-    top: 193px;
-    left: 104px;
+    top: -8px;
   }
 }
 </style>

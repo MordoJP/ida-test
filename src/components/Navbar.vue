@@ -1,6 +1,6 @@
 <template>
   <div class="container-navbar">
-    <span class="add-product">Добавление товара</span>
+    <h1 class="add-product">Добавление товара</h1>
     <div class="filter-container">
       <div class="filter-block" @click="show = true" v-if="!show">
         <span class="filter-text">{{ filterNow }}</span>
@@ -69,8 +69,7 @@ export default {
 /* basic navbar styles */
 .container-navbar {
   display: flex;
-  box-sizing: border-box;
-  padding: 16px 24px 0;
+  padding: 32px 32px 16px;
   justify-content: space-between;
 }
 
@@ -82,11 +81,13 @@ export default {
 
 /* Adding text styles */
 .add-product {
-font-family: $main-font;
-font-style: normal;
-font-weight: 600;
-font-size: 28px;
-color: $main-text-color;
+  margin: 0;
+  font-family: $main-font;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+  color: $main-text-color;
 }
 
 /* filter button styles */
@@ -222,7 +223,7 @@ color: $main-text-color;
   .dropdown-list {
     min-width: 120px;
     left: -120px;
-    top: -13px;
+    top: -8px;
     li {
       height: 20px;
       padding-left: 10px;

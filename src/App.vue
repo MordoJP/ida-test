@@ -3,9 +3,9 @@
     <div class="container-block">
       <AppNavbar />
       <div class="content">
-        <AppNewProduct />
+        <AppNewProduct class="new-product-card" />
         <div class="products-block">
-          <AppProductCard v-for="product of displayProducts" :key="product.id" :newProduct="product" />
+          <AppProductCard v-for="product of displayProducts" :key="product.id" :newProduct="product" class="product-card"/>
         </div>
       </div>
     </div>
@@ -33,6 +33,7 @@ export default {
 
 .container {
   width: 100%;
+  background-color: rgba(255, 254, 251, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,8 +45,8 @@ export default {
 
 .content {
   width: 100%;
+  padding: 0 32px;
   box-sizing: border-box;
-  padding: 16px 8px 0;
   display: flex;
   justify-content: space-between;
 }
@@ -54,6 +55,16 @@ export default {
   width: 1044px;
   display: flex;
   flex-wrap: wrap;
+  margin: 0 -8px;
+}
+
+.new-product-card {
+  width: 332px;
+}
+
+.product-card {
+  width: 332px;
+  margin: 0 8px 16px;
 }
 
 /* Adaptive styles */
@@ -76,6 +87,10 @@ export default {
   .products-block {
     width: 628px;
   }
+
+  .product-card {
+    max-width: 280px;
+  }
 }
 
 @media screen and (max-width: 1023px) {
@@ -88,6 +103,10 @@ export default {
     flex-direction: column;
     align-items: center;
   }
+
+  .product-card {
+    max-width: 332px;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -98,9 +117,15 @@ export default {
   .products-block {
     width: 420px;
   }
+
   .content {
     flex-direction: column;
     align-items: center;
+  }
+
+  .new-product-card {
+    width: 420px;
+    margin-bottom: 16px;
   }
 }
 
@@ -111,6 +136,14 @@ export default {
 
   .products-block {
     min-width: 320px;
+  }
+
+  .product-card {
+    max-width: 300px;
+  }
+
+  .new-product-card {
+    width: 320px;
   }
 }
 </style>
